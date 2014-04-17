@@ -1,0 +1,8 @@
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: MIDlet Suite Vendor
+MIDlet-Jar-URL: EpicChase.jar
+MicroEdition-Configuration: CLDC-1.0
+Nokia-MIDlet-App-Orientation: landscape
+MIDlet-1: Main,,com.md04.gee3.epicchase.main.Main
+MicroEdition-Profile: MIDP-2.1
+MIDlet-Name: EpicChase MIDlet Suite
