@@ -10,13 +10,13 @@ import com.nokia.mid.ui.VirtualKeyboard;
 
 public class Main extends MIDlet {
 
-	public Main() {
-		// TODO Auto-generated constructor stub
-		
-	}
+//	public Main() {
+//		// TODO Auto-generated constructor stub
+//		
+//	}
 	protected static Display display;
 	private EpicChaseCanvas epicChaseCanvas = null;
-
+	Poster poster;
 	    /**
 	     * Initializes display.
 	     * @see javax.microedition.midlet.MIDlet#startApp()
@@ -25,7 +25,8 @@ public class Main extends MIDlet {
 	        if (epicChaseCanvas == null) {
 	        	epicChaseCanvas = new EpicChaseCanvas(this);
 	            display = Display.getDisplay(this);
-	            display.setCurrent(epicChaseCanvas);
+	            poster = new Poster(display, epicChaseCanvas);
+	            display.setCurrent(poster);
 	        }
 
 	        // Hide virtual keyboard if one exists.
