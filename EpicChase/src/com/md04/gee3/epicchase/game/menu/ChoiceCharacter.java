@@ -15,6 +15,8 @@ public class ChoiceCharacter
     extends Menu {
 	
     public static final int BACK = 0;
+    public static final int HELP=1;
+    public static final int JERRY=2;
     private int width;
     private int height;
     private final Font fontBold = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD,
@@ -26,17 +28,17 @@ public class ChoiceCharacter
 	
     public ChoiceCharacter(int w, int h, Listener l) {
         super(1, w, h, l);
-        bgChoose = loadImage("bg_about.png");
+        bgChoose = loadImage("bg_choose.png");
         setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
         setSize(w, h);
     }
-
+    
     public final void setSize(int w, int h) {
         width = w;
         height = h;
 
         int x = width / 2;
-        int y = 11 * height / 13;
+        int y = 11 * height / 11 -10;
         for (int i = 0; i < getSize(); i++) {
             MenuItem item = getItem(i);
             item.setCenter(x, y);

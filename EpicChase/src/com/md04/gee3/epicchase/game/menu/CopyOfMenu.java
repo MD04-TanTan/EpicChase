@@ -10,7 +10,7 @@ import javax.microedition.lcdui.game.Sprite;
 /*
  * Generic class for menu.
  */
-public abstract class Menu {
+public abstract class CopyOfMenu {
 
     public static final int POINTER_PRESSED = 0;
     public static final int POINTER_DRAGGED = 1;
@@ -27,8 +27,14 @@ public abstract class Menu {
      * @param h Height of screen
      * @param listener Menu item click listener
      */
-    protected Menu(int capacity, int w, int h, Listener listener) {
+    protected CopyOfMenu(int capacity, int w, int h, Listener listener) {
         items = new MenuItem[capacity];
+//        if (Math.max(w, h) < Resources.MEDIUM_THRESHOLD) {
+//            resourcePath = "/menu/low/";
+//        }
+//        else {
+//            resourcePath = "/menu/medium/";
+//        }
         resourcePath = "/menu/";
         this.listener = listener;
     }
@@ -147,7 +153,7 @@ public abstract class Menu {
      */
     protected Sprite loadSprite(String fileName, int lines) {
         Image i = loadImage(fileName);
-        return new Sprite(i, i.getWidth(), i.getHeight() / lines);
+        return new Sprite(i, i.getWidth(), i.getHeight() /lines);
     }
 
     protected Image loadImage(String fileName) {
