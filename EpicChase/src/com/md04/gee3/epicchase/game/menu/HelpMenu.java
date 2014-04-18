@@ -26,7 +26,7 @@ public class HelpMenu
         super(1, w, h, l);
         bgHelp = loadImage("bg_help.png");
         this.hasPointerEvents = hasPointerEvents;
-        setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
+        setItem(BACK, new MenuItem(loadSprite("back.png", 2)));
         setSize(w, h);
     }
 

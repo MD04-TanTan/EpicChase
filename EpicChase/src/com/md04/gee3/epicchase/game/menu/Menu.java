@@ -29,6 +29,12 @@ public abstract class Menu {
      */
     protected Menu(int capacity, int w, int h, Listener listener) {
         items = new MenuItem[capacity];
+//        if (Math.max(w, h) < Resources.MEDIUM_THRESHOLD) {
+//            resourcePath = "/menu/low/";
+//        }
+//        else {
+//            resourcePath = "/menu/medium/";
+//        }
         resourcePath = "/menu/";
         this.listener = listener;
     }
