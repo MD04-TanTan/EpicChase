@@ -476,7 +476,7 @@ public class EpicChaseCanvas
                         break;
                     case EpicChaseMenu.NEWGAME:
                         showChoiceMenu();
-                        menuMusic.stop();
+                        //menuMusic.stop();
                         break;
                     case EpicChaseMenu.SOUNDS:
                         menu.toggleSounds();
