@@ -7,7 +7,7 @@ import javax.microedition.lcdui.Image;
 
 
 /*
- * Class for handling game resources.
+ * Lớp xử lý nguồn tài nguyên của game
  */
 public class Resources {
 
@@ -15,62 +15,31 @@ public class Resources {
     public static final int HIGH_THRESHOLD = 640;
     private String resourcePath;
     public final int gridSizeInPixels;
-    public final int tankMovementInPixels;
-    public final Image tiles;
-    public final Image ground;
-    public final Image spawn;
-    
-//    public final TankImage tank;
-//    public final TankImage enemyTank;
-//    public final TankImage fastEnemyTank;
-//    public final TankImage heavyEnemyTank;
-    
+
+    public final Image tiles;				// tile khi dùng để tạo map
+    public final Image ground;				// Đất	
+    public final Image spawn;				// Hình ảnh khi nhân vật được tạo ra
     public final CharacterImage Tom;
     public final CharacterImage Jerry;
   	public final CharacterImage Enemy;
-  	
-    
     public static final int[] SPAWNING_ANIM_SEQ = {0, 1, 2};
-    public final Image bullet;
-    public final Image base;
-    public static final int[] BASE_NORMAL_SEQ = {0};
-    public static final int[] BASE_PROTECTED_SEQ = {0, 1, 2, 3, 2, 1};
-    public static final int[] BASE_DESTROYED_SEQ = {4};
-    public final Image trees;
-    public final Image explosion;
-    public final Image ammo;
-    public final Image clock;
-    public final Image grenade;
-    public final Image life;
-    public final Image shovel;
-    public final Image star;
-    public final Image lifeIcon;
-    public final Image enemyIcon;
+    public final Image item;  			// Vật phẩm
+    public final Image obstruction;		// Vật cản
     public final Image hudBackground;
 
     public Resources(int w, int h) {
         final int max = Math.max(w, h);
+        
         /*
          * Check what is the size of the resources to be loaded
          */
-        if (max < MEDIUM_THRESHOLD) {
-            resourcePath = "/low/";
-            gridSizeInPixels = 4;
-        }
-        else if (max < HIGH_THRESHOLD) {
-            resourcePath = "/medium/";
-            gridSizeInPixels = 8;
-        }
-        else {
-            resourcePath = "/high/";
-            gridSizeInPixels = 16;
-        }
-        tankMovementInPixels = gridSizeInPixels / 4;
+        resourcePath = "/entity/";
+        gridSizeInPixels = 4;
         tiles = loadImage("tiles.png");
         ground = loadImage("ground.png");
         spawn = loadImage("spawn.png");
         
-        // Load hình cho nhân vật
+        // Load hình ảnh cho nhân vật
         Tom = new CharacterImage(loadImage("tank.png"), new int[]{0, 1, 2},
             new int[]{3, 4, 5});
         Jerry = new CharacterImage(loadImage("FT-17_argonne.png"), new int[]{0, 1,
@@ -78,19 +47,9 @@ public class Resources {
         Enemy = new CharacterImage(loadImage("m1_abrams.png"), new int[]{1, 2,
                 3}, new int[]{0});
 
-        bullet = loadImage("bullet.png");
-        base = loadImage("base.png");
-        explosion = loadImage("explosion.png");
-        ammo = loadImage("ammo.png");
-        clock = loadImage("clock.png");
-        grenade = loadImage("grenade.png");
-        life = loadImage("life.png");
-        shovel = loadImage("shovel.png");
-        star = loadImage("star.png");
-        lifeIcon = loadImage("life_icon.png");
-        enemyIcon = loadImage("enemy_icon.png");
+        item = loadImage("base.png");
+        obstruction = loadImage("trees.png");
         hudBackground = loadImage("hud_bg.png");
-        trees = loadImage("trees.png");
     }
 
     /**
