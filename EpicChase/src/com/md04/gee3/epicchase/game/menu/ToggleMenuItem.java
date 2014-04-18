@@ -23,7 +23,7 @@ public class ToggleMenuItem
     }
 
     protected int getFrame() {
-        return super.getFrame() + (on ? 0 : 2);
+        return super.getFrame() + (on ? 2 : 0);
     }
 
     public boolean isOn() {

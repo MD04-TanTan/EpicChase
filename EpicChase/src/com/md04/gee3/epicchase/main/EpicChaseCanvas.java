@@ -11,6 +11,7 @@ import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 
+import com.md04.gee3.epicchase.game.audio.Audio;
 import com.md04.gee3.epicchase.game.menu.AboutMenu;
 import com.md04.gee3.epicchase.game.menu.ChoiceCharacter;
 import com.md04.gee3.epicchase.game.menu.EpicChaseMenu;
@@ -46,6 +47,8 @@ public class EpicChaseCanvas
     // the game loop that is run MAX_RENDERING_FPS timer per second
     private GameThread gameLoop;
     private Graphics graphics;
+    
+    private Audio menuMusic;
 
     private Command backCommand;
     
@@ -64,11 +67,12 @@ public class EpicChaseCanvas
         this.main = main;
 
         // create menus
+        createMenuMusic();
         createMenu();
         createGame();
         createHelpMenu();
         createAboutMenu();
-        CreatnewGame();
+        createNewGame();
         createPointerEventHandler();
         
         if (HW_BACK_KEY_EXISTS) {
@@ -340,6 +344,11 @@ public class EpicChaseCanvas
         gameLoop = new GameThread(this, MAX_RENDERING_FPS);
         gameLoop.start();
     }
+    
+    private void createMenuMusic() {
+    	menuMusic = new Audio("/audio/Menu Music.mp3", -1);
+    	menuMusic.start();
+    }
 
     private void createHelpMenu() {
         helpMenu = new HelpMenu(getWidth(), getHeight(), hasPointerEvents(),
@@ -391,7 +400,7 @@ public class EpicChaseCanvas
     }
 
 
-    private void CreatnewGame() {
+    private void createNewGame() {
     	   choiceMenu = new ChoiceCharacter(getWidth(), getHeight(), new Menu.Listener() {
 
                public void itemClicked(int item) {
@@ -463,12 +472,17 @@ public class EpicChaseCanvas
                 switch (item) {
                     case EpicChaseMenu.RESUME:
                         hideCurrentMenu();
+                        menuMusic.stop();
                         break;
                     case EpicChaseMenu.NEWGAME:
                         showChoiceMenu();
+                        menuMusic.stop();
                         break;
                     case EpicChaseMenu.SOUNDS:
-                        //game.soundsEnabled = menu.toggleSounds();
+                        menu.toggleSounds();
+                        if (menuMusic.areSoundsEnabled())
+                        	menuMusic.disableSounds();
+                        else menuMusic.enableSounds();
                         break;
                     case EpicChaseMenu.HELP:
                         showHelpMenu();
