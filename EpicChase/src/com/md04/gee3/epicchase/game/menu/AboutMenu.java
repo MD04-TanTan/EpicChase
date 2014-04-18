@@ -25,7 +25,7 @@ public class AboutMenu
     public AboutMenu(int w, int h, Listener l) {
         super(1, w, h, l);
         bgAbout = loadImage("bg_about.png");
-        setItem(BACK, new MenuItem(loadSprite("back.png", 2)));
+        setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
         setSize(w, h);
     }
 
