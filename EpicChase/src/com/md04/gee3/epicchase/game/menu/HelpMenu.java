@@ -35,7 +35,7 @@ public class HelpMenu
         height = h;
 
         int x = width / 2;
-        int y = 11 * height / 12;
+        int y = 11 * height / 11 -10;
         for (int i = 0; i < getSize(); i++) {
             MenuItem item = getItem(i);
             item.setCenter(x, y);
