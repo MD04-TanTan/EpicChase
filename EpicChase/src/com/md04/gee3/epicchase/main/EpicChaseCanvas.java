@@ -1,7 +1,5 @@
 package com.md04.gee3.epicchase.main;
 
-import java.io.IOException;
-
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
@@ -17,6 +15,7 @@ import com.md04.gee3.epicchase.game.menu.ChoiceCharacter;
 import com.md04.gee3.epicchase.game.menu.EpicChaseMenu;
 import com.md04.gee3.epicchase.game.menu.HelpMenu;
 import com.md04.gee3.epicchase.game.menu.Menu;
+import com.md04.gee3.epicchase.games.LevelManager;
 
 
 
@@ -49,6 +48,8 @@ public class EpicChaseCanvas
     private Graphics graphics;
     
     private Audio menuMusic;
+    
+    private LevelManager level;
 
     private Command backCommand;
     
@@ -67,6 +68,7 @@ public class EpicChaseCanvas
         this.main = main;
 
         // create menus
+       
         createMenuMusic();
         createMenu();
         createGame();
@@ -83,7 +85,13 @@ public class EpicChaseCanvas
 
     }
 
-    /**
+    private void createLevel() { //TEST: LUU LEVEL CUA TOM = 10
+		// TODO Auto-generated method stub
+		LevelManager.SaveTomLevel(10);
+		LevelManager.printTomLevel();
+	}
+
+	/**
      * Gets the states of the physical game keys.
      *
      * @return An integer containing the key state information (one bit per
@@ -175,8 +183,24 @@ public class EpicChaseCanvas
      */
     public void showChoiceMenu() {
         showMenu();
+        createLevel();
         choiceMenu.selectItem(hasPointerEvents() ? -1 : 0);
         visibleMenu = choiceMenu;
+        /*try {
+			RecordStore level = RecordStore.openRecordStore("level", true);
+			byte[] levels = {1, 2};
+			level.addRecord(levels, 2, 2);
+			System.out.println(level.getRecord(1));
+		} catch (RecordStoreFullException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RecordStoreNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RecordStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
     }
      
 
