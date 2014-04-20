@@ -48,8 +48,6 @@ public class EpicChaseCanvas
     private Graphics graphics;
     
     private Audio menuMusic;
-    
-    private LevelManager level;
 
     private Command backCommand;
     
@@ -68,7 +66,7 @@ public class EpicChaseCanvas
         this.main = main;
 
         // create menus
-       
+      
         createMenuMusic();
         createMenu();
         createGame();
@@ -87,8 +85,10 @@ public class EpicChaseCanvas
 
     private void createLevel() { //TEST: LUU LEVEL CUA TOM = 10
 		// TODO Auto-generated method stub
-		LevelManager.SaveTomLevel(10);
-		LevelManager.printTomLevel();
+
+    	LevelManager.saveTomLevel(2);
+    	LevelManager.saveJerryLevel(20);
+
 	}
 
 	/**
@@ -168,6 +168,8 @@ public class EpicChaseCanvas
         showMenu();
         helpMenu.selectItem(hasPointerEvents() ? -1 : 0);
         visibleMenu = helpMenu;
+        LevelManager.printTomLevel();
+        LevelManager.printJerryLevel();
     }
 
     /**
@@ -179,7 +181,7 @@ public class EpicChaseCanvas
         visibleMenu = aboutMenu;
     }
     /**
-     * Show Creats New Game
+     * Show Create New Game
      */
     public void showChoiceMenu() {
         showMenu();
@@ -513,6 +515,8 @@ public class EpicChaseCanvas
                         break;
                     case EpicChaseMenu.ABOUT:
                         showAboutMenu();
+                        LevelManager.saveTomLevel(100);
+                        LevelManager.saveJerryLevel(25);
                         break;
                     case EpicChaseMenu.EXIT:
                         main.close();
