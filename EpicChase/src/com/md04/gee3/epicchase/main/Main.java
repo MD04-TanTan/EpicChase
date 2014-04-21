@@ -12,7 +12,7 @@ public class Main extends MIDlet {
 
 	public Main() {
 		// TODO Auto-generated constructor stub
-		
+
 	}
 	protected static Display display;
 	private EpicChaseCanvas epicChaseCanvas = null;
@@ -60,7 +60,7 @@ public class Main extends MIDlet {
 	        notifyDestroyed();
 	    }
 
-	    public EpicChaseCanvas getBattleTankCanvas() {
+	    public EpicChaseCanvas getBattsleTankCanvas() {
 	        return epicChaseCanvas;
 	    }
 

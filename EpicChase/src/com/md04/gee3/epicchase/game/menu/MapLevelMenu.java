@@ -27,10 +27,10 @@ public class MapLevelMenu extends Menu{
 	
     public MapLevelMenu(int w, int h, Listener l) {
         super(3, w, h, l);
-        bgChoose = loadImage("/map/level1.png");
-        setItem(PLAY, new MenuItem(loadSprite("back_footer.png", 2)));
+        bgChoose = loadImage("/map/bg_map.png");
+        setItem(PLAY, new MenuItem(loadSprite("play_footer.png", 2)));
         setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
-        setItem(NEWGAME, new MenuItem(loadSprite("back_footer.png", 2)));
+        setItem(NEWGAME, new MenuItem(loadSprite("newgame_footer.png", 2)));
         setSize(w, h);
     }
     

@@ -450,7 +450,7 @@ public class EpicChaseCanvas
                 switch (item) {
                     case MapLevelMenu.BACK:
                         hideCurrentMenu();
-                        showMenu();
+                        showChoiceMenu();
                         break;
                     case MapLevelMenu.PLAY:
                         System.out.println("Play Game!");

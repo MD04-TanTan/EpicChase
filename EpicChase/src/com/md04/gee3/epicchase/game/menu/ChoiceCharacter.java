@@ -31,9 +31,9 @@ public class ChoiceCharacter
     public ChoiceCharacter(int w, int h, Listener l) {
         super(3, w, h, l);
         bgChoose = loadImage("bg_choose.png");
-        setItem(TOM, new MenuItem(loadSprite("back_footer.png", 2)));
+        setItem(TOM, new MenuItem(loadSprite("tom.png", 2)));
         setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
-        setItem(JERRY, new MenuItem(loadSprite("back_footer.png", 2)));
+        setItem(JERRY, new MenuItem(loadSprite("jerry.png", 2)));
         setSize(w, h);
     }
     
@@ -52,7 +52,7 @@ public class ChoiceCharacter
         height = h;
         final int bgW = bgChoose.getWidth();
         final int bgH = bgChoose.getHeight();
-        final int leftOffset = (w - bgW) / 2;
+        final int leftOffset = (w - bgW) /2;
         final int topOffset = (h - bgH) / 2;
         final int menuW = Math.min(w, bgW);
         final int menuH = Math.min(h, bgH);
