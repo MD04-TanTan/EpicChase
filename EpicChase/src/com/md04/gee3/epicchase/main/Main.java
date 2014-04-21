@@ -60,7 +60,7 @@ public class Main extends MIDlet {
 	        notifyDestroyed();
 	    }
 
-	    public EpicChaseCanvas getBattsleTankCanvas() {
+	    public EpicChaseCanvas getEpicChaseCanvas() {
 	        return epicChaseCanvas;
 	    }
 
