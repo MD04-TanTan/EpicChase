@@ -14,6 +14,7 @@ import com.md04.gee3.epicchase.game.menu.AboutMenu;
 import com.md04.gee3.epicchase.game.menu.ChoiceCharacter;
 import com.md04.gee3.epicchase.game.menu.EpicChaseMenu;
 import com.md04.gee3.epicchase.game.menu.HelpMenu;
+import com.md04.gee3.epicchase.game.menu.MapLevelMenu;
 import com.md04.gee3.epicchase.game.menu.Menu;
 import com.md04.gee3.epicchase.games.LevelManager;
 
@@ -37,6 +38,7 @@ public class EpicChaseCanvas
     private HelpMenu helpMenu;
     private AboutMenu aboutMenu;
     private ChoiceCharacter choiceMenu;
+    private MapLevelMenu mapMenu;
     // current visible menu
     private Menu visibleMenu;
     //private Game game;
@@ -73,6 +75,7 @@ public class EpicChaseCanvas
         createHelpMenu();
         createAboutMenu();
         createNewGame();
+        createMapLevelMenu();
         createPointerEventHandler();
         
         if (HW_BACK_KEY_EXISTS) {
@@ -179,29 +182,23 @@ public class EpicChaseCanvas
         aboutMenu.selectItem(hasPointerEvents() ? -1 : 0);
         visibleMenu = aboutMenu;
     }
+    
     /**
      * Show Create New Game
      */
     public void showChoiceMenu() {
         showMenu();
-        //createLevel();
         choiceMenu.selectItem(hasPointerEvents() ? -1 : 0);
         visibleMenu = choiceMenu;
-        /*try {
-			RecordStore level = RecordStore.openRecordStore("level", true);
-			byte[] levels = {1, 2};
-			level.addRecord(levels, 2, 2);
-			System.out.println(level.getRecord(1));
-		} catch (RecordStoreFullException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RecordStoreNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RecordStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+    }
+    
+    /**
+     * Show Map Level
+     */
+    public void showMapLevel() {
+        showMenu();
+        mapMenu.selectItem(hasPointerEvents() ? -1 : 0);
+        visibleMenu = mapMenu;
     }
      
 
@@ -436,13 +433,34 @@ public class EpicChaseCanvas
                            break;
                        case ChoiceCharacter.TOM:
                            System.out.println("Choose Tom!");
+                           showMapLevel();
                            break;
                        case ChoiceCharacter.JERRY:
                           System.out.println("Choose Jerry!");
+                          showMapLevel();
                            break;
                    }
                }
            });
+    }
+    
+    private void createMapLevelMenu(){
+    	mapMenu = new MapLevelMenu(getWidth(), getHeight(), new Menu.Listener(){
+    		public void itemClicked(int item) {
+                switch (item) {
+                    case MapLevelMenu.BACK:
+                        hideCurrentMenu();
+                        showMenu();
+                        break;
+                    case MapLevelMenu.PLAY:
+                        System.out.println("Play Game!");
+                        break;
+                    case MapLevelMenu.NEWGAME:
+                       System.out.println("New Game!");
+                        break;
+                }
+            }
+    	});
     }
 
     private int getRecordId(RecordStore store)
