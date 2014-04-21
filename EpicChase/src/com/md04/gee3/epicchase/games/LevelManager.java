@@ -67,7 +67,7 @@ public class LevelManager {
 	public static void printTomLevel() {
 		openTomLevel();
 		try {
-			System.out.println((int)tomLevelRS.getRecord(1)[0]);
+			System.out.println("Tom Level: "+(int)tomLevelRS.getRecord(1)[0]);
 		} catch (RecordStoreNotOpenException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class LevelManager {
 	public static void printJerryLevel() {
 		openJerryLevel();
 		try {
-			System.out.println((int)jerryLevelRS.getRecord(1)[0]);
+			System.out.println("Jerry Level: "+(int)jerryLevelRS.getRecord(1)[0]);
 		} catch (RecordStoreNotOpenException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

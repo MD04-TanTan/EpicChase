@@ -168,8 +168,7 @@ public class EpicChaseCanvas
         showMenu();
         helpMenu.selectItem(hasPointerEvents() ? -1 : 0);
         visibleMenu = helpMenu;
-        LevelManager.printTomLevel();
-        LevelManager.printJerryLevel();
+        
     }
 
     /**
@@ -185,7 +184,7 @@ public class EpicChaseCanvas
      */
     public void showChoiceMenu() {
         showMenu();
-        createLevel();
+        //createLevel();
         choiceMenu.selectItem(hasPointerEvents() ? -1 : 0);
         visibleMenu = choiceMenu;
         /*try {
@@ -435,6 +434,12 @@ public class EpicChaseCanvas
                            hideCurrentMenu();
                            showMenu();
                            break;
+                       case ChoiceCharacter.TOM:
+                           System.out.println("Choose Tom!");
+                           break;
+                       case ChoiceCharacter.JERRY:
+                          System.out.println("Choose Jerry!");
+                           break;
                    }
                }
            });
@@ -502,7 +507,9 @@ public class EpicChaseCanvas
                         break;
                     case EpicChaseMenu.NEWGAME:
                         showChoiceMenu();
-                        //menuMusic.stop();
+                        LevelManager.saveTomLevel(2);
+                    	LevelManager.saveJerryLevel(20);
+                        
                         break;
                     case EpicChaseMenu.SOUNDS:
                         menu.toggleSounds();
@@ -512,6 +519,8 @@ public class EpicChaseCanvas
                         break;
                     case EpicChaseMenu.HELP:
                         showHelpMenu();
+                        LevelManager.printTomLevel();
+                        LevelManager.printJerryLevel();
                         break;
                     case EpicChaseMenu.ABOUT:
                         showAboutMenu();

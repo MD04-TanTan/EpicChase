@@ -22,6 +22,7 @@ public class EpicChaseMenu extends Menu {
     private final ToggleMenuItem sounds;
     private int width;
     private int height;
+    private int distanceHeightItem = 2;
 
     public EpicChaseMenu(int w, int h, Listener l) {
     	//TAN TEST GIT HUB
@@ -35,8 +36,6 @@ public class EpicChaseMenu extends Menu {
         setItem(HELP, new MenuItem(loadSprite("help.png", 2)));
         setItem(ABOUT, new MenuItem(loadSprite("about.png", 2)));
         setItem(EXIT, new MenuItem(loadSprite("exit.png", 2)));
-       // setItem(TOM, new MenuItem(loadSprite("tom_menu.png", 2)));
-      //  setItem(JERRY, new MenuItem(loadSprite("jerry_menu.png", 2)));
         setSize(w, h);
     }
 
@@ -59,7 +58,7 @@ public class EpicChaseMenu extends Menu {
         for (int i = 0; i < getSize(); i++) {
             MenuItem item = getItem(i);
             item.setCenter(x, y);
-            y += item.getHeight();
+            y = y + item.getHeight() + distanceHeightItem;
         }
     }
 

@@ -14,11 +14,13 @@ import javax.microedition.lcdui.game.TiledLayer;
 public class ChoiceCharacter
     extends Menu {
 	
-    public static final int BACK = 0;
-    public static final int HELP=1;
+    public static final int TOM = 0;
+    public static final int BACK = 1;
     public static final int JERRY=2;
     private int width;
     private int height;
+    private int marginBottom = 15;
+    private int distanceWidthItem = 25;
     private final Font fontBold = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD,
         Font.SIZE_SMALL);
     private final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN,
@@ -27,23 +29,48 @@ public class ChoiceCharacter
     private  Image bgChoose;
 	
     public ChoiceCharacter(int w, int h, Listener l) {
-        super(1, w, h, l);
+        super(3, w, h, l);
         bgChoose = loadImage("bg_choose.png");
+        setItem(TOM, new MenuItem(loadSprite("back_footer.png", 2)));
         setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
+        setItem(JERRY, new MenuItem(loadSprite("back_footer.png", 2)));
         setSize(w, h);
     }
     
     public final void setSize(int w, int h) {
-        width = w;
+//        width = w;
+//        height = h;
+//
+//        int x = width / 2;
+//        int y = 11 * height / 11 -10;
+//        for (int i = 0; i < getSize(); i++) {
+//            MenuItem item = getItem(i);
+//            item.setCenter(x, y);
+//            y += item.getHeight();
+//        }
+    	width = w;
         height = h;
-
-        int x = width / 2;
-        int y = 11 * height / 11 -10;
+        final int bgW = bgChoose.getWidth();
+        final int bgH = bgChoose.getHeight();
+        final int leftOffset = (w - bgW) / 2;
+        final int topOffset = (h - bgH) / 2;
+        final int menuW = Math.min(w, bgW);
+        final int menuH = Math.min(h, bgH);
+        int x = leftOffset + menuW / 5;
+        int y = topOffset + menuH - marginBottom;
         for (int i = 0; i < getSize(); i++) {
             MenuItem item = getItem(i);
             item.setCenter(x, y);
-            y += item.getHeight();
+            //y += item.getHeight();
+            x = x + item.getWidth() + distanceWidthItem;
+            
         }
+        System.out.println("Width: " + w);
+        System.out.println("Height: " + h);
+        System.out.println("leftOffset: " + leftOffset);
+        System.out.println("topOffset: " + topOffset);
+        System.out.println("X: " + x);
+        System.out.println("Y: " + y);
     }
 //	protected void pointerPressed(int x, int y){
 //		Graphics g =  getGraphics();
