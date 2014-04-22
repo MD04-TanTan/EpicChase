@@ -34,10 +34,16 @@ public class Audio {
 		  catch (MediaException me) { }
 	}
 	
+	public void setLoop(int loop) {
+		player.setLoopCount(loop);
+	}
+	
 	public void start()
 	{
 		try {
+			player.prefetch();
 			volumeControl.setLevel(volume);
+			
 			player.start();
 		} catch (MediaException e) {
 			e.printStackTrace();
@@ -46,7 +52,12 @@ public class Audio {
 	
 	public void stop()
 	{
-		player.close();
+		try {
+			player.stop();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean areSoundsEnabled() {

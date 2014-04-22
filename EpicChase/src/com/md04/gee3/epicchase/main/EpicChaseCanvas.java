@@ -287,7 +287,10 @@ public class EpicChaseCanvas
      */
     protected void showNotify() {
         graphics = getGraphics();
+        //menuMusic.setLoop(-1);
         startGameLoop();
+        
+        
         // show menu view first
         showMenu();
     }
@@ -367,7 +370,10 @@ public class EpicChaseCanvas
     }
 
     private void startGameLoop() {
+    	
+
         stopGameLoop();
+    	menuMusic.start();
         gameLoop = new GameThread(this, MAX_RENDERING_FPS);
         gameLoop.start();
     }
@@ -474,7 +480,7 @@ public class EpicChaseCanvas
     	mapMenu.setTomLevel(tomLv);
     }
 
-    private int getRecordId(RecordStore store)
+    /*private int getRecordId(RecordStore store)
         throws RecordStoreException {
         RecordEnumeration e = store.enumerateRecords(null, null, false);
         try {
@@ -483,7 +489,7 @@ public class EpicChaseCanvas
         finally {
             e.destroy();
         }
-    }
+    }*/
 
     private void createPointerEventHandler() {
         pointerEventHandler = new PointerEventHandler(getWidth(), getHeight(),
