@@ -12,6 +12,7 @@ public class LevelManager {
 	private static RecordStore tomLevelRS;
 	private static RecordStore jerryLevelRS;	
 	
+	
 	public static void saveTomLevel(int tom)
 	{
 		try {
@@ -158,5 +159,10 @@ public class LevelManager {
 			e.printStackTrace();
 		}
 	}
+	
+
+	
+
+	
 }
 	

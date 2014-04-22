@@ -5,6 +5,7 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.game.GameCanvas;
+import javax.microedition.lcdui.game.LayerManager;
 import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
@@ -32,6 +33,8 @@ public class EpicChaseCanvas
     private static final int LEFT_SOFTKEY = -6;
     private static final int RIGHT_SOFTKEY = -7;
     private volatile int pointerKeyState = 0;
+    private int tomLv = 1;
+    private int jerryLv = 2;
     private Main main;
     // menus
     private EpicChaseMenu menu;
@@ -39,6 +42,7 @@ public class EpicChaseCanvas
     private AboutMenu aboutMenu;
     private ChoiceCharacter choiceMenu;
     private MapLevelMenu mapMenu;
+
     // current visible menu
     private Menu visibleMenu;
     //private Game game;
@@ -433,10 +437,14 @@ public class EpicChaseCanvas
                            break;
                        case ChoiceCharacter.TOM:
                            System.out.println("Choose Tom!");
+                           mapMenu.setChooseTom(true);
+                           mapMenu.paintBackground();
                            showMapLevel();
                            break;
                        case ChoiceCharacter.JERRY:
-                          System.out.println("Choose Jerry!");
+                          System.out.println("Choose Jerry!");                          
+                          mapMenu.setChooseJerry(true);
+                          mapMenu.paintBackground();
                           showMapLevel();
                            break;
                    }
@@ -444,7 +452,7 @@ public class EpicChaseCanvas
            });
     }
     
-    private void createMapLevelMenu(){
+    private void createMapLevelMenu(){	
     	mapMenu = new MapLevelMenu(getWidth(), getHeight(), new Menu.Listener(){
     		public void itemClicked(int item) {
                 switch (item) {
@@ -461,6 +469,8 @@ public class EpicChaseCanvas
                 }
             }
     	});
+    	mapMenu.setJerryLevel(jerryLv);
+    	mapMenu.setTomLevel(tomLv);
     }
 
     private int getRecordId(RecordStore store)

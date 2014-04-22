@@ -5,6 +5,7 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 import com.md04.gee3.epicchase.game.menu.Menu.Listener;
+import com.md04.gee3.epicchase.games.LevelManager;
 
 
 /*
@@ -18,20 +19,53 @@ public class MapLevelMenu extends Menu{
     private int height;
     private int marginBottom = 15;
     private int distanceWidthItem = 25;
+   
     private final Font fontBold = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD,
         Font.SIZE_SMALL);
     private final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN,
         Font.SIZE_SMALL);
     
+    private int tomLevel;
+	private int jerryLevel;
+    private boolean chooseTom = false;
+   	private boolean chooseJerry = false;
+    
     private  Image bgChoose;
 	
     public MapLevelMenu(int w, int h, Listener l) {
         super(3, w, h, l);
+        
         bgChoose = loadImage("/map/bg_map.png");
         setItem(PLAY, new MenuItem(loadSprite("play_footer.png", 2)));
         setItem(BACK, new MenuItem(loadSprite("back_footer.png", 2)));
         setItem(NEWGAME, new MenuItem(loadSprite("newgame_footer.png", 2)));
         setSize(w, h);
+    }
+    
+    public void paintBackground(){
+    	if(chooseTom){
+    		switch (tomLevel) {
+			case 1:
+				bgChoose = loadImage("/map/level1.png");
+				setBackground(bgChoose);
+				chooseTom = false;
+				break;
+			default:
+				break;
+			}
+    	}
+    	if(chooseJerry){
+    		switch (jerryLevel) {
+			case 2:
+				bgChoose = loadImage("/map/level2.png");
+				setBackground(bgChoose);
+				chooseJerry = false;
+				break;
+
+			default:
+				break;
+			}
+    	}
     }
     
     public final void setSize(int w, int h) {
@@ -75,4 +109,25 @@ public class MapLevelMenu extends Menu{
 
         super.paint(g);
     }
+    
+	public void setChooseTom(boolean choose){
+		this.chooseTom = choose;
+	}
+	
+	public void setChooseJerry(boolean choose){
+		this.chooseJerry = choose;
+	}
+	
+	public void setTomLevel(int level){
+		this.tomLevel = level;
+	}
+	
+	public void setJerryLevel(int level){
+		this.jerryLevel = level;
+	}
+	
+	public void setBackground(Image bg){
+		this.bgChoose = bg;
+	}
+	
 }
