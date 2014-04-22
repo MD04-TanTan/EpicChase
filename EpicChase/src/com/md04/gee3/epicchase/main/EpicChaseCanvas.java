@@ -73,7 +73,7 @@ public class EpicChaseCanvas
 
         // create menus
       
-        createMenuMusic();
+        
         createMenu();
         createGame();
         createHelpMenu();
@@ -373,7 +373,8 @@ public class EpicChaseCanvas
     	
 
         stopGameLoop();
-    	menuMusic.start();
+        createMenuMusic();
+    	//menuMusic.start();
         gameLoop = new GameThread(this, MAX_RENDERING_FPS);
         gameLoop.start();
     }
