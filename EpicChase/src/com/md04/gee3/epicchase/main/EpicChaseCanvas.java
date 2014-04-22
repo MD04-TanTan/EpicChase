@@ -299,6 +299,7 @@ public class EpicChaseCanvas
     protected void hideNotify() {
         //AudioManager.disableSounds();
         stopGameLoop();
+        
         graphics = null;
     }
 
@@ -521,6 +522,7 @@ public class EpicChaseCanvas
     private void stopGameLoop() {
         if (gameLoop != null) {
             gameLoop.cancel();
+            menuMusic.stop();
         }
     }
 
