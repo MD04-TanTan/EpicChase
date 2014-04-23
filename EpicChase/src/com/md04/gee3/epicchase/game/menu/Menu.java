@@ -147,7 +147,7 @@ public abstract class Menu {
      */
     protected Sprite loadSprite(String fileName, int lines) {
         Image i = loadImage(fileName);
-        return new Sprite(i, i.getWidth(), i.getHeight() / lines);
+		return new Sprite(i, i.getWidth(), i.getHeight() / lines);
     }
 
     protected Image loadImage(String fileName) {
