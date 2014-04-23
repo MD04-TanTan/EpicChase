@@ -37,7 +37,7 @@ public class Character {
 	public void initImage()
 	{
 		try {
-			imgChar = Image.createImage("/man.png");
+			imgChar = Image.createImage("/sprite/man.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

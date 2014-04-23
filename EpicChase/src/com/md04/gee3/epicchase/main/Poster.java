@@ -8,15 +8,19 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
+import com.md04.gee3.epicchase.game.audio.Audio;
+
 public class Poster extends Canvas {
 	
 	Display display;
 	Displayable nextDisplay;
 	Image imgPoster;
+	
 	public Poster(Display d, Displayable next)
 	{
 		display = d;
 		nextDisplay = next;
+		
 		try {
 			imgPoster = Image.createImage("/poster/poster.png");
 		} catch (IOException e) {

@@ -17,6 +17,7 @@ import com.md04.gee3.epicchase.game.menu.EpicChaseMenu;
 import com.md04.gee3.epicchase.game.menu.HelpMenu;
 import com.md04.gee3.epicchase.game.menu.MapLevelMenu;
 import com.md04.gee3.epicchase.game.menu.Menu;
+import com.md04.gee3.epicchase.games.Game;
 import com.md04.gee3.epicchase.games.LevelManager;
 
 
@@ -26,7 +27,7 @@ import com.md04.gee3.epicchase.games.LevelManager;
  */
 public class EpicChaseCanvas
 	extends GameCanvas
-	implements GameThread.Listener, CommandListener {
+	implements GameThread.Listener, CommandListener{
 	
 	private static final boolean HW_BACK_KEY_EXISTS;
     private static final int MAX_RENDERING_FPS = 12;
@@ -42,17 +43,17 @@ public class EpicChaseCanvas
     private AboutMenu aboutMenu;
     private ChoiceCharacter choiceMenu;
     private MapLevelMenu mapMenu;
-
+    
     // current visible menu
     private Menu visibleMenu;
-    //private Game game;
+    private Game gamecv;
     
     // touch handler
     private PointerEventHandler pointerEventHandler;
     // the game loop that is run MAX_RENDERING_FPS timer per second
     private GameThread gameLoop;
     private Graphics graphics;
-    
+    private int GAME_STATE;
     private Audio menuMusic;
 
     private Command backCommand;
@@ -70,9 +71,9 @@ public class EpicChaseCanvas
         super(false);
         setFullScreenMode(true);
         this.main = main;
-
+        GAME_STATE = 0;
         // create menus
-      
+        
         createMenuMusic();
         createMenu();
         createGame();
@@ -468,7 +469,9 @@ public class EpicChaseCanvas
                         showChoiceMenu();
                         break;
                     case MapLevelMenu.PLAY:
-                        System.out.println("Play Game!");
+                        
+                        GAME_STATE = 1;
+                        System.out.println("Play Game! game state  = 1");
                         break;
                     case MapLevelMenu.NEWGAME:
                        System.out.println("New Game!");
@@ -570,17 +573,31 @@ public class EpicChaseCanvas
             }
         });
     }
-
+    boolean temp = false;
     public void runGameLoop() {
+    	// TODO Auto-generated method stub
         if (visibleMenu != null) {
             visibleMenu.render(graphics);
+             if(GAME_STATE == 1) {
+          	 gamecv = new Game();
+          	 temp = true;
+               gamecv.prepareGraphics(graphics);
+//               while(temp)
+//               {
+            	   gamecv.upDate();
+//               }
+               
+          }
         }
-        else {
-//            game.update(getKeyStates());
-//            game.render(graphics);
-        }
+//        else if(temp == 1) {
+////            game.update(getKeyStates());
+////            game.render(graphics);
+//        	 gamecv = new Game();
+//             gamecv.prepareGraphics(graphics);
+//        }
 
         flushGraphics();
     }
+
 
 }
