@@ -76,8 +76,14 @@ public class EpicChaseCanvas
         //nhan vat chay
         isJump = false;
         // create menus
+<<<<<<< HEAD
         
         createMenuMusic();
+=======
+
+        
+        //createMenuMusic();
+>>>>>>> 8cabede47842247c070ddba6a224b740cd1e56c7
 
         createMenu();
         createGame();
