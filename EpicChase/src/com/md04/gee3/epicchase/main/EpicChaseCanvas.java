@@ -73,13 +73,10 @@ public class EpicChaseCanvas
         this.main = main;
         GAME_STATE = 0;
         // create menus
-<<<<<<< HEAD
+
         
-        createMenuMusic();
-=======
-      
-        
->>>>>>> 266ba98ad86202420834e91251c599e1ee27c7d4
+        //createMenuMusic();
+
         createMenu();
         createGame();
         createHelpMenu();
