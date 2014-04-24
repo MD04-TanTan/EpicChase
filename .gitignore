@@ -188,3 +188,4 @@ pip-log.txt
 .mr.developer.cfg
 *.classpath
 *.properties
+EpicChase/build.properties

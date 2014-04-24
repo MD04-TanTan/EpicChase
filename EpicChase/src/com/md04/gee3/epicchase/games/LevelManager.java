@@ -15,23 +15,38 @@ public class LevelManager {
 	
 	public static void saveTomLevel(int tom)
 	{
-		try {
-			RecordStore.deleteRecordStore("tomLevel");
-		} catch (RecordStoreNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (RecordStoreException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+			
 		openTomLevel();
+		byte tomLevelArr[] = {(byte) tom};
+		try {
+			if(tomLevelRS.getNumRecords()!=0) {
+			try {
+				tomLevelRS.setRecord(1, tomLevelArr, 0, tomLevelArr.length);
+			} catch (InvalidRecordIDException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RecordStoreFullException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RecordStoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			} else {
+				
+			}
+		} catch (RecordStoreNotOpenException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
 		
 		try {
-			byte tomLevelArr[] = {(byte) tom};
+			
 			tomLevelRS.addRecord(tomLevelArr, 0, tomLevelArr.length);
 		} catch (RecordStoreException e) {
 			e.printStackTrace();
 		}
+		
 		closeTomLevel();
 		
 	}
@@ -79,20 +94,29 @@ public class LevelManager {
 		closeTomLevel();
 	}
 	
-	public static void saveJerryLevel(int jerry)
-	{
+	public static void saveJerryLevel(int jerry) {
+		openJerryLevel();
+		byte jerryLevelArr[] = {(byte) jerry};
 		try {
-			RecordStore.deleteRecordStore("jerryLevel");
-		} catch (RecordStoreNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (RecordStoreException e1) {
+			if (jerryLevelRS.getNumRecords()!=0) {
+				try {
+					jerryLevelRS.setRecord(1, jerryLevelArr, 1, jerryLevelArr.length);
+				} catch (InvalidRecordIDException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (RecordStoreFullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (RecordStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (RecordStoreNotOpenException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		openJerryLevel();
 		try {
-			byte jerryLevelArr[] = {(byte) jerry};
 			jerryLevelRS.addRecord(jerryLevelArr, 0, jerryLevelArr.length);
 		} catch (RecordStoreException e) {
 			e.printStackTrace();
