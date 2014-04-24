@@ -42,7 +42,7 @@ public class Game {
 	public void initImage()
 	{
 		try {
-			imgBG = Image.createImage("/bggame/bg.png");
+			imgBG = Image.createImage("/bggame/bg5.png");
 			imgGround = Image.createImage("/bggame/ground.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
