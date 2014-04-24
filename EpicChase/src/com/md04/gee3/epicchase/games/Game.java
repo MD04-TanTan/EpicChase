@@ -21,7 +21,7 @@ public class Game {
 
 	private int Xman;
 	private int Yman;
-	int bgCurX = 0;
+	int bgCurX;
 	boolean isFlying;
 	boolean isJump;
 	Character man;
@@ -30,20 +30,19 @@ public class Game {
 		
 		// TODO Auto-generated constructor stub
 		manager = new LayerManager();
-
+		bgCurX = 0;
 		isFlying = true;
 		isJump = false;
 		initImage();	
 		initCharacter();
-		initGroundLayer();
-		initBackgroundLayer();
-		
+		//initGroundLayer();	
+		initBackgroundLayer();		
 	}
 	
 	public void initImage()
 	{
 		try {
-			imgBG = Image.createImage("/bggame/atlas.png");
+			imgBG = Image.createImage("/bggame/bg.png");
 			imgGround = Image.createImage("/bggame/ground.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -53,7 +52,7 @@ public class Game {
 	
 	private void initBackgroundLayer()
 	{
-		backgroundLayer = new TiledLayer(1, 1, imgBG, 320, 240);
+		backgroundLayer = new TiledLayer(1, 1, imgBG, 640, 240);
 		backgroundLayer.setCell(0, 0, 1);
 		backgroundLayer.setPosition(0, 0);
 		manager.append(backgroundLayer);
@@ -71,8 +70,7 @@ public class Game {
 		man = new Character();
 		spriteMan = man.createSprite();
 		spriteMan.setPosition(30, 152);
-		manager.append(spriteMan);
-		
+		manager.append(spriteMan);	
 	}
 //	public void startGame()
 //	{
@@ -83,46 +81,33 @@ public class Game {
 	public void upDate()
 	{
 		
-		groundLayer.setPosition(bgCurX--, 200);
-		spriteMan.nextFrame();
-		if (isJump) {	
-			man.jump();	
-			if(spriteMan.getY() <= 180)
-			{
-				isJump = false;
-			}	
+		bgCurX-=2;
+		if(bgCurX == -320)
+			bgCurX = 0;
+		else{
+			
+			backgroundLayer.setPosition(bgCurX, 0);
+			//groundLayer.setPosition(bgCurX, 200);	
 		}
-		else
-			{
-				man.update();
-				//System.out.println(spriteMan.getY());
-			}
+		
+			
+		spriteMan.nextFrame();
+		//System.out.println("Game.upDate()" + bgCurX);
+//		if (isJump) {	
+//			man.jump();	
+//			if(spriteMan.getY() <= 180)
+//			{
+//				isJump = false;
+//			}	
+//		}
+//		else
+//			{
+//				man.update();
+//				//System.out.println(spriteMan.getY());
+//			}
 	}
 
-//	public void run() {
-//		// TODO Auto-generated method stub
-//		while (isFlying) {
-//			upDate();
-//			prepareGraphics(g);
-//			flushGraphics();
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//
-//	}
-	
-//	public void pointerPressed(int x,int y)
-//	{
-//		isJump = true;
-//		//man.jump();
-//		//isJump = false;
-//		System.out.println("jump = true");
-//		
-//	}
+
 	public void prepareGraphics(Graphics g)
 	{
 

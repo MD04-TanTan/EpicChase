@@ -28,7 +28,7 @@ public class Character {
 	//Tao sprite cho character
 	public Sprite createSprite()
 	{
-		spriteChar = new Sprite(imgChar, 48, 48);
+		spriteChar = new Sprite(imgChar, 50, 48);
 		spriteChar.setPosition(curX, curY);
 		return spriteChar;
 	}
@@ -37,7 +37,7 @@ public class Character {
 	public void initImage()
 	{
 		try {
-			imgChar = Image.createImage("/sprite/man.png");
+			imgChar = Image.createImage("/sprite/jerry_run.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

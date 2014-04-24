@@ -53,11 +53,12 @@ public class EpicChaseCanvas
     // the game loop that is run MAX_RENDERING_FPS timer per second
     private GameThread gameLoop;
     private Graphics graphics;
+    //trang thai game
     private int GAME_STATE;
     private Audio menuMusic;
-
     private Command backCommand;
-    
+    //Trang thai nhan vat
+    boolean isJump;
     static {
         HW_BACK_KEY_EXISTS = System.getProperty("com.nokia.keyboard.type").equalsIgnoreCase("OnekeyBack");
     }
@@ -72,14 +73,12 @@ public class EpicChaseCanvas
         setFullScreenMode(true);
         this.main = main;
         GAME_STATE = 0;
+        //nhan vat chay
+        isJump = false;
         // create menus
-<<<<<<< HEAD
         
         createMenuMusic();
-=======
-      
-        
->>>>>>> 266ba98ad86202420834e91251c599e1ee27c7d4
+
         createMenu();
         createGame();
         createHelpMenu();
@@ -87,7 +86,7 @@ public class EpicChaseCanvas
         createNewGame();
         createMapLevelMenu();
         createPointerEventHandler();
-        
+        gamecv = new Game();
         if (HW_BACK_KEY_EXISTS) {
             backCommand = new Command("Back", Command.BACK, 0);
             this.addCommand(backCommand);
@@ -249,8 +248,12 @@ public class EpicChaseCanvas
      * @param y coordinate of press
      */
     protected void pointerPressed(int x, int y) {
+    	//System.out.println(isJump);
         if (visibleMenu != null) {
             visibleMenu.pointerEvent(Menu.POINTER_PRESSED, x, y);
+            //nhan vat nhay
+            isJump = true;
+           // System.out.println(isJump);
         }
         else {
             pointerEventHandler.pointerPressed(x, y);
@@ -279,12 +282,14 @@ public class EpicChaseCanvas
      * @param y coordinate
      */
     protected void pointerReleased(int x, int y) {
+    	
         if (visibleMenu != null) {
             visibleMenu.pointerEvent(Menu.POINTER_RELEASED, x, y);
         }
         else {
             pointerEventHandler.pointerReleased(x, y);
         }
+        
     }
 
     /**
@@ -475,7 +480,7 @@ public class EpicChaseCanvas
                         showChoiceMenu();
                         break;
                     case MapLevelMenu.PLAY:
-                        
+                        //Khi nhan nut Play
                         GAME_STATE = 1;
                         System.out.println("Play Game! game state  = 1");
                         break;
@@ -579,30 +584,18 @@ public class EpicChaseCanvas
             }
         });
     }
-    boolean temp = false;
+    
     public void runGameLoop() {
     	// TODO Auto-generated method stub
         if (visibleMenu != null) {
             visibleMenu.render(graphics);
-             if(GAME_STATE == 1) {
-          	 gamecv = new Game();
-          	 temp = true;
-               gamecv.prepareGraphics(graphics);
-//               while(temp)
-//               {
-            	   gamecv.upDate();
-//               }
-               
+            
+             if(GAME_STATE == 1) {   	        
+          	gamecv.prepareGraphics(graphics);
+          	gamecv.upDate();
           }
         }
-//        else if(temp == 1) {
-////            game.update(getKeyStates());
-////            game.render(graphics);
-//        	 gamecv = new Game();
-//             gamecv.prepareGraphics(graphics);
-//        }
-
-        flushGraphics();
+        flushGraphics();      
     }
 
 
