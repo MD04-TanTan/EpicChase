@@ -17,7 +17,9 @@ public class Poster extends Canvas {
 	Image imgPoster;
 	
 	public Poster(Display d, Displayable next)
-	{
+	{	
+		EpicChaseCanvas.menuMusic = new Audio("/audio/Menu Music.mp3", -1);
+		
 		display = d;
 		nextDisplay = next;
 		
@@ -38,4 +40,11 @@ public class Poster extends Canvas {
 		g.drawImage(imgPoster, 0, 0, Graphics.TOP| Graphics.LEFT);
 	}
 
+	protected void showNotify() {
+		EpicChaseCanvas.menuMusic.start();
+	}
+	
+	protected void hideNotify() {
+		EpicChaseCanvas.menuMusic.stop();
+	}
 }
