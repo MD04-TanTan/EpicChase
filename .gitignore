@@ -189,3 +189,6 @@ pip-log.txt
 *.classpath
 *.properties
 EpicChase/build.properties
+EpicChase/.classpath
+EpicChase/.mtj
+EpicChase/build.properties

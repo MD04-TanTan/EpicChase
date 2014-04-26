@@ -100,7 +100,7 @@ public class LevelManager {
 		try {
 			if (jerryLevelRS.getNumRecords()!=0) {
 				try {
-					jerryLevelRS.setRecord(1, jerryLevelArr, 1, jerryLevelArr.length);
+					jerryLevelRS.setRecord(1, jerryLevelArr, 0, jerryLevelArr.length);
 				} catch (InvalidRecordIDException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

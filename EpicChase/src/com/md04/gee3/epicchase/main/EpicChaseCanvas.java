@@ -55,7 +55,7 @@ public class EpicChaseCanvas
     private Graphics graphics;
     //trang thai game
     private int GAME_STATE;
-    private Audio menuMusic;
+    public static Audio menuMusic;
     private Command backCommand;
     //Trang thai nhan vat
     boolean isJump;
@@ -76,15 +76,6 @@ public class EpicChaseCanvas
         //nhan vat chay
         isJump = false;
         // create menus
-
-        
-        createMenuMusic();
-
-
-        
-        //createMenuMusic();
-
-
         createMenu();
         createGame();
         createHelpMenu();
@@ -390,15 +381,10 @@ public class EpicChaseCanvas
     	
 
         stopGameLoop();
-        createMenuMusic();
-    	//menuMusic.start();
+        //createMenuMusic();
+    	menuMusic.start();
         gameLoop = new GameThread(this, MAX_RENDERING_FPS);
         gameLoop.start();
-    }
-    
-    private void createMenuMusic() {
-    	menuMusic = new Audio("/audio/Menu Music.mp3", -1);
-    	menuMusic.start();
     }
 
     private void createHelpMenu() {
