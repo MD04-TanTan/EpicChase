@@ -20,9 +20,9 @@ public class Character {
 	public Character() {
 		// TODO Auto-generated constructor stub
 		initImage();
-		curX = 20;
-		curY = 230;
-		//iJump = curY - 50;
+		curX = 30;
+		curY = 180;
+		iJump = curY - 50;
 	}
 	
 	//Tao sprite cho character
@@ -47,12 +47,12 @@ public class Character {
 	
 	//Ham nhay
 	public void jump() {
-		iJump = curY-=5;
-		if(iJump >= 180)
+		
+		if(curY > iJump)
 		{
-			spriteChar.setPosition(curX,iJump);
-		}
-			
+			curY-=10;
+			spriteChar.setPosition(curX,curY);
+		}		
 	}
 	
 	//Ham chet
@@ -60,14 +60,14 @@ public class Character {
 		
 	}
 	
-	public void update() {
-		
-		if(iJump <= 230)
+	public void update() {	
+		if(curY < 190)
 		{
-			iJump = curY+=5;
-			spriteChar.setPosition(curX, iJump);
+			curY+=5;
+			spriteChar.setPosition(curX, curY);
+			System.out.println(curY);
 		}
-//		iJump = curY+=5;
+//		iJump = curY+=10;
 //		spriteChar.setPosition(curX, iJump);
 		//spriteChar.setPosition(curX, curY);
 	}

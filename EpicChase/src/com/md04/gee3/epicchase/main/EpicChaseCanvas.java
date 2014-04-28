@@ -59,6 +59,7 @@ public class EpicChaseCanvas
     private Command backCommand;
     //Trang thai nhan vat
     boolean isJump;
+    int stateChar;
     static {
         HW_BACK_KEY_EXISTS = System.getProperty("com.nokia.keyboard.type").equalsIgnoreCase("OnekeyBack");
     }
@@ -75,6 +76,7 @@ public class EpicChaseCanvas
         GAME_STATE = 0;
         //nhan vat chay
         isJump = false;
+        stateChar = 0;
         // create menus
         createMenu();
         createGame();
@@ -250,7 +252,10 @@ public class EpicChaseCanvas
             visibleMenu.pointerEvent(Menu.POINTER_PRESSED, x, y);
             //nhan vat nhay
             isJump = true;
-           // System.out.println(isJump);
+            if(GAME_STATE ==1)
+            {
+         	   stateChar = 1;
+            }
         }
         else {
             pointerEventHandler.pointerPressed(x, y);
@@ -584,7 +589,7 @@ public class EpicChaseCanvas
             
              if(GAME_STATE == 1) {   	        
           	gamecv.prepareGraphics(graphics);
-          	gamecv.upDate();
+          	gamecv.upDate(stateChar);
           }
         }
         flushGraphics();      

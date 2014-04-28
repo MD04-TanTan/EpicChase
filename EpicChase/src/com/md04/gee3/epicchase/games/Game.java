@@ -22,7 +22,6 @@ public class Game {
 	private int Xman;
 	private int Yman;
 	int bgCurX;
-	boolean isFlying;
 	boolean isJump;
 	Character man;
 	Sprite spriteMan;
@@ -31,7 +30,6 @@ public class Game {
 		// TODO Auto-generated constructor stub
 		manager = new LayerManager();
 		bgCurX = 0;
-		isFlying = true;
 		isJump = false;
 		initImage();	
 		initCharacter();
@@ -69,7 +67,6 @@ public class Game {
 	{
 		man = new Character();
 		spriteMan = man.createSprite();
-		spriteMan.setPosition(30, 152);
 		manager.append(spriteMan);	
 	}
 //	public void startGame()
@@ -78,20 +75,38 @@ public class Game {
 //		t.start();
 //	}
 	
-	public void upDate()
+	public void upDate(int state)
 	{
-		
 		bgCurX-=2;
 		if(bgCurX == -320)
 			bgCurX = 0;
-		else{
-			
+		else{	
 			backgroundLayer.setPosition(bgCurX, 0);
 			//groundLayer.setPosition(bgCurX, 200);	
-		}
-		
-			
+		}		
 		spriteMan.nextFrame();
+		
+		switch (state) {	
+		case 1://Nhay
+			isJump = true;
+			if(isJump)
+			{
+				man.jump();
+				isJump = false;
+			}		
+			else
+//			if(isJump == false)
+			{
+				System.out.println("aaaa");
+				man.update();
+			}
+			System.out.println(isJump);
+			break;
+		case 2:
+			
+		default:
+			break;
+		}
 		//System.out.println("Game.upDate()" + bgCurX);
 //		if (isJump) {	
 //			man.jump();	
