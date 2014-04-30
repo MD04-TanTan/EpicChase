@@ -7,7 +7,6 @@ import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
-
 import com.md04.gee3.epicchase.game.audio.Audio;
 
 public class Poster extends Canvas {
@@ -17,9 +16,7 @@ public class Poster extends Canvas {
 	Image imgPoster;
 	
 	public Poster(Display d, Displayable next)
-	{	
-		EpicChaseCanvas.menuMusic = new Audio("/audio/Menu Music.mp3", -1);
-		
+	{
 		display = d;
 		nextDisplay = next;
 		
@@ -39,8 +36,9 @@ public class Poster extends Canvas {
 		// TODO Auto-generated method stub
 		g.drawImage(imgPoster, 0, 0, Graphics.TOP| Graphics.LEFT);
 	}
-
+	
 	protected void showNotify() {
+		EpicChaseCanvas.menuMusic = new Audio(Audio.MENU_MUSIC, -1);
 		EpicChaseCanvas.menuMusic.start();
 	}
 	

@@ -11,12 +11,15 @@ import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 
 import com.md04.gee3.epicchase.game.audio.Audio;
+import com.md04.gee3.epicchase.game.dialog.LoseDialog;
+import com.md04.gee3.epicchase.game.dialog.WinDialog;
 import com.md04.gee3.epicchase.game.menu.AboutMenu;
 import com.md04.gee3.epicchase.game.menu.ChoiceCharacter;
 import com.md04.gee3.epicchase.game.menu.EpicChaseMenu;
 import com.md04.gee3.epicchase.game.menu.HelpMenu;
 import com.md04.gee3.epicchase.game.menu.MapLevelMenu;
 import com.md04.gee3.epicchase.game.menu.Menu;
+import com.md04.gee3.epicchase.game.menu.Menu.Listener;
 import com.md04.gee3.epicchase.games.Game;
 import com.md04.gee3.epicchase.games.LevelManager;
 
@@ -41,6 +44,7 @@ public class EpicChaseCanvas
     private EpicChaseMenu menu;
     private HelpMenu helpMenu;
     private AboutMenu aboutMenu;
+    private LoseDialog loseMenu;
     private ChoiceCharacter choiceMenu;
     private MapLevelMenu mapMenu;
     
@@ -59,7 +63,7 @@ public class EpicChaseCanvas
     private Command backCommand;
     //Trang thai nhan vat
     boolean isJump;
-    int stateChar;
+	int stateChar;
     static {
         HW_BACK_KEY_EXISTS = System.getProperty("com.nokia.keyboard.type").equalsIgnoreCase("OnekeyBack");
     }
@@ -76,9 +80,10 @@ public class EpicChaseCanvas
         GAME_STATE = 0;
         //nhan vat chay
         isJump = false;
-        stateChar = 0;
+		stateChar = 0;
         // create menus
         createMenu();
+        createLoseDialog();
         createGame();
         createHelpMenu();
         createAboutMenu();
@@ -94,13 +99,31 @@ public class EpicChaseCanvas
 
     }
 
-    private void createLevel() { //TEST: LUU LEVEL CUA TOM = 10
+    private void createLevel() { 
 		// TODO Auto-generated method stub
 
     	LevelManager.saveTomLevel(2);
     	LevelManager.saveJerryLevel(20);
 
 	}
+    
+    private void createLoseDialog() {
+    	loseMenu = new LoseDialog(10, getWidth(), getHeight(), new Menu.Listener() {
+
+			public void itemClicked(int item) {
+				// TODO Auto-generated method stub
+				switch(item) {
+					case WinDialog.REPLAY:
+						break;
+					case WinDialog.CONTINUE:
+						break;
+					case WinDialog.MENU:
+						hideCurrentMenu();
+						showMenu();
+						break;
+				}
+			}});
+    }
 
 	/**
      * Gets the states of the physical game keys.
@@ -200,6 +223,12 @@ public class EpicChaseCanvas
         visibleMenu = choiceMenu;
     }
     
+    public void showLoseDialog() {
+    	showMenu();
+    	loseMenu.selectItem(hasPointerEvents() ? -1 : 0);
+    	visibleMenu = loseMenu;
+    }
+    
     /**
      * Show Map Level
      */
@@ -252,10 +281,11 @@ public class EpicChaseCanvas
             visibleMenu.pointerEvent(Menu.POINTER_PRESSED, x, y);
             //nhan vat nhay
             isJump = true;
-            if(GAME_STATE ==1)
-            {
+			if(GAME_STATE ==1) {
          	   stateChar = 1;
             }
+
+           // System.out.println(isJump);
         }
         else {
             pointerEventHandler.pointerPressed(x, y);
@@ -386,10 +416,15 @@ public class EpicChaseCanvas
     	
 
         stopGameLoop();
-        //createMenuMusic();
-    	menuMusic.start();
+        startMenuMusic();
+    	//menuMusic.start();
         gameLoop = new GameThread(this, MAX_RENDERING_FPS);
         gameLoop.start();
+    }
+    
+    private void startMenuMusic() {
+    	//menuMusic = new Audio("/audio/Menu Music.mp3", -1);
+    	menuMusic.start();
     }
 
     private void createHelpMenu() {
@@ -549,8 +584,11 @@ public class EpicChaseCanvas
             public void itemClicked(int item) {
                 switch (item) {
                     case EpicChaseMenu.RESUME:
-                        hideCurrentMenu();
-                        menuMusic.stop();
+                        createLoseDialog();
+                    	showLoseDialog();
+                        //hideCurrentMenu();
+                        //menuMusic.stop();
+                    	
                         break;
                     case EpicChaseMenu.NEWGAME:
                         showChoiceMenu();
